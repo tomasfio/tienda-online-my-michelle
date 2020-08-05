@@ -74,7 +74,7 @@
                                 @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 @else
-                                {{ Auth::user()->name }}
+                                <strong>{{ Auth::user()->apellido }} , {{ Auth::user()->nombre }} </strong>
                                 <a style="color:white" classe="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
                                     Cerrar Sesión

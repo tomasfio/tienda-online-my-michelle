@@ -21,7 +21,10 @@ class CreateProductosTable extends Migration
             $table->boolean('solo_minorista');
             $table->boolean('en_stock');
             $table->boolean('activo');
+            $table->unsignedBigInteger('subcategoria_id');
             $table->timestamps();
+
+            $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
         });
     }
 

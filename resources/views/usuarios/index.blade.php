@@ -9,13 +9,17 @@
                 <thead>
                     <th>Id</th>
                     <th>Nombre</th>
+                    <th>Apellido</th>
                     <th>Email</th>
+                    <th>Rol</th>
                 </thead>
                 @foreach ($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
+                        <td>{{$user->nombre}}</td>
+                        <td>{{$user->apellido}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->getRoleNames()[0]}}</td>
                     </tr>
                 @endforeach
             </table>

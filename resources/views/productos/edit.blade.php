@@ -29,13 +29,21 @@
                 <label for="observacion">Observaciones</label>
                 <textarea class="form-control" name="observacion" rows="3" placeholder="Ingrese observacion del producto">{{$producto->observacion}}</textarea>
             </div>
+            <div class="form-group">
+                <label for="subcategorias">Subcategorias</label>
+                <select name="subcategoria" class="form-control">
+                    @foreach ($subcategorias as $subc)
+                        <option value="{{$subc->id}}">{{$subc->nombre}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="row pl-50">
                 <div class="col-6 form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="solo_minorista" value="{{$producto->solo_minorista}}">
+                    <input type="checkbox" class="form-check-input" name="solo_minorista" {{$producto->solo_minorista == 1 ? 'checked' : ''}}>
                     <label class="form-check-label" for="solo_minorista">¿Solo minorista?</label>
                 </div>
                 <div class="col-6 form-group form-check">
-                    <input type="checkbox" class="form-check-input" name="hay_stock" value="{{$producto->en_stock}}">
+                    <input type="checkbox" class="form-check-input" name="hay_stock" {{$producto->en_stock == 1 ? 'checked' : ''}}>
                     <label class="form-check-label" for="hay_stock">Hay stock</label>
                 </div>
             </div>

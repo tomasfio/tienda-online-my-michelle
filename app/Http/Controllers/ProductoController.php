@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductFormRequest;
 use App\Producto;
+use App\Subcategoria;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -26,7 +27,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        $subcategorias = Subcategoria::all();
+        return view('productos.create', ['subcategorias' => $subcategorias]);
     }
 
     /**
@@ -41,6 +43,7 @@ class ProductoController extends Controller
         $producto->cod_producto = request('codigo');
         $producto->descripcion = request('descripcion');
         $producto->observacion = request('observacion');
+        $producto->subcategoria_id = $request->get('subcategoria');
         $producto->solo_minorista = $request->boolean('solo_minorista');
         $producto->en_stock = $request->boolean('hay_stock');
         $producto->activo = true;
@@ -69,7 +72,10 @@ class ProductoController extends Controller
      */
     public function edit(string $codigo)
     {
-        return view('productos.edit', ['producto' => Producto::where('cod_producto', 'LIKE', $codigo)->firstOrFail()]);
+        return view('productos.edit', [
+            'producto' => Producto::where('cod_producto', 'LIKE', $codigo)->firstOrFail(),
+            'subcategorias' => Subcategoria::all()
+            ]);
     }
 
     public function update(ProductFormRequest $request, string $codigo)
@@ -78,6 +84,7 @@ class ProductoController extends Controller
 
         $producto->descripcion = $request->get('descripcion');
         $producto->observacion = $request->get('observacion');
+        $producto->subcategoria_id = $request->get('subcategoria');
         $producto->solo_minorista = $request->boolean('solo_minorista');
         $producto->en_stock = $request->boolean('hay_stock');
 
