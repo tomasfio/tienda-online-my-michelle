@@ -28,6 +28,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+    <?php use App\User; $users_count = User::all()->count(); ?>
     <div id="app">
         <div class="wrapper">
 
@@ -104,17 +105,18 @@
                                 </a>
                             </li>
 
+                            @can('users_abm')
                             <li class="nav-item">
                                 <a href="{{ url('usuarios')}}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Usuarios
-                                        <?php use App\User; $users_count = User::all()->count(); ?>
                                         <span class="right badge badge-danger">{{ $users_count ?? '0' }}</span>
                                     </p>
                                 </a>
                             </li>
+                            @endcan
 
                             <li class="nav-item">
                                 <a href="{{ url('subcategorias')}}"
