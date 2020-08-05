@@ -60,7 +60,7 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="{{ url('/') }}" class="brand-link">
-                    <img src="{{ asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    <img src="{{ asset('dist/img/logo/logo.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                         style="opacity: .8">
                     <span class="brand-text font-weight-light">Gestion My Michelle</span>
                 </a>
@@ -68,17 +68,14 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
-                        </div>
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">C
                         <div class="info">
                             <a href="#" class="d-block">
                                 @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 @else
                                 {{ Auth::user()->name }}
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a style="color:white" classe="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
                                     Cerrar Sesión
                                 </a>
@@ -143,37 +140,6 @@
                                     </i>
                                 </a>
                             </li>
-
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-sticky-note"></i>
-                                    <p>Notas<i class="fas fa-angle-left right"></i></p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="notas/todas"
-                                            class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Todas</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="notas/favoritas"
-                                            class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Favoritas</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="notas/archivadas"
-                                            class="{{ Request::path() === 'notas/archivadas' ? 'nav-link active' : 'nav-link' }}">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Archivadas</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
                         </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
