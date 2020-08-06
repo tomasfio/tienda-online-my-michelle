@@ -26,7 +26,13 @@
                     <td>{{$producto->subcategoria->nombre}}</td>
                     <td>{{$producto->subcategoria->categoria->nombre}}</td>
                     <td><a type="button" class="btn btn-warning" href="{{ route('productos.edit', $producto->codigo)}}" >Modificar</a></td>
-                    <td><a type="button" class="btn btn-danger">Eliminar</a></td>
+                    <td>
+                        <form action="{{ route('productos.destroy', $producto->codigo) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                     <td><a type="button" class="btn btn-info" href="{{ route('product.galleria.index', $producto->codigo) }}">Imagenes</a></td>
                 </tr>
             @endforeach

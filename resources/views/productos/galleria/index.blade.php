@@ -10,13 +10,20 @@
             <div class="col-md-3 mt-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <img style="width:300px; height:200px" src="{{ asset('/img/'.$imagen->nombre_imagen) }}" alt="Imagen no encotnrad" class="img-thumbnail">
+                        <img style="width:300px; height:200px; @if($imagen->principal)border: 5px solid #0080FF @endif;" src="{{ asset('/img/'.$imagen->nombre_imagen) }}" alt="Imagen no encotnrad" class="img-thumbnail">
                     </div>
                     <div class="panel-footer">
-                        <form action="{{ route('product.galeria.destroy', $imagen->nombre_imagen)}}"
-                            method="post">
+                        @if(!$imagen->principal)
+                        <form action="{{ route('product.galeria.update', $imagen->nombre_imagen)}}" method="post">
                             @csrf
-                            @method('Delete')
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-primary btn-sm float-left">Principal</button>
+                        </form>
+                        @endif
+
+                        <form action="{{ route('product.galeria.destroy', $imagen->nombre_imagen)}}" method="post">
+                            @csrf
+                            @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm float-right">Eliminar</button>
                         </form>
                     </div>

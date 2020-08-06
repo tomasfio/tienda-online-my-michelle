@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductFormRequest;
 use App\Producto;
 use App\Subcategoria;
+
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -100,6 +102,16 @@ class ProductoController extends Controller
      */
     public function destroy(string $codigo)
     {
-        //
+        $producto = Producto::findOrFail($codigo);
+
+        foreach($producto->imagenes as $imagen){
+            $image_path = public_path().'/img/'.$imagen->nombre_imagen;
+            if(File::exists($image_path)){
+                File::delete($image_path);
+            }
+        }
+
+        $producto->delete();
+        return redirect('/productos');
     }
 }

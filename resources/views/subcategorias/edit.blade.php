@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Editar subcategoria: {{$subcategoria->nombre}}</h2>
         <form action="{{ route('subcategorias.update', $subcategoria->id)}}" method="post">
-            @method('PATCH')
+            @method('PUT')
             @csrf
 
             <div class="form-group">

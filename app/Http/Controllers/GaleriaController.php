@@ -21,16 +21,23 @@ class GaleriaController extends Controller
     }
 
     public function add(string $codigo,ImagenProductoRequest $request){
+        $imagenes = ImagenesProducto::all()->where('cod_producto', 'LIKE', $codigo);
+
         $imagen = new ImagenesProducto();
         $file = $request->imagen;
         $nuevoNombre = $codigo . '_' . date('Ymdhis') . '.' . $file->getClientOriginalExtension();
         $file->move(public_path().'/img', $nuevoNombre);
         $imagen->nombre_imagen = $nuevoNombre;
         $imagen->cod_producto = $codigo;
+        if(count($imagenes) == 0){
+            $imagen->principal = true;
+        }
+        else{
+            $imagen->principal = false;
+        }
 
         $imagen->save();
 
-        $imagenes = ImagenesProducto::all()->where('cod_producto', 'LIKE', $codigo);
 
         return redirect("/productos/$codigo/galeria");
     }
@@ -46,5 +53,22 @@ class GaleriaController extends Controller
 
         $img->delete();
         return redirect("/productos/$codigo/galeria");
+    }
+
+    public function update(string $imagen){
+        $img = ImagenesProducto::findOrFail($imagen);
+        $imgAnteriorPrincipal = ImagenesProducto::all()->where('cod_producto', $img->cod_producto)
+            ->where('principal', 1);
+
+        if(count($imgAnteriorPrincipal) != 0){
+            foreach($imgAnteriorPrincipal as $imgA){
+                $imgA->principal = false;
+                $imgA->update();
+            }
+        }
+
+        $img->principal = true;
+        $img->update();
+        return redirect("/productos/$img->cod_producto/galeria");
     }
 }
