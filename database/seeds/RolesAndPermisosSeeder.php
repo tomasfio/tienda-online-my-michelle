@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RolesAndPermisosSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class RolesAndPermisosSeeder extends Seeder
      */
     public function run()
     {
+        Permission::firstOrCreate([ 'name' => 'gestionar_pagina']);
+        Permission::firstOrCreate([ 'name' =>  'users_abm']);
+
         $roleSuperAdmin = Role::firstOrCreate(['name' => 'super-admin']);
         $roleSuperAdmin->syncPermissions([
             'gestionar_pagina',

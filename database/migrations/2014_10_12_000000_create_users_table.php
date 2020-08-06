@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('password');
-            $table->string('codigo_postal');
-            $table->string('localidad');
+            $table->string('codigo_postal')->nullable();
+            $table->string('localidad')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

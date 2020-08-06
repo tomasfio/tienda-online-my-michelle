@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Resgistrar nuevo producto</h2>
-        <form method="POST" action="{{ route('productos.update', $producto->cod_producto) }}">
+        <form method="POST" action="{{ route('productos.update', $producto->codigo) }}">
             @method('PATCH')
             @csrf
 
@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label for="codigo">Codigo</label>
-                <input type="text" class="form-control" name="cod_producto" value="{{$producto->cod_producto}}" placeholder="Ingrese codigo del producto" readonly>
+                <input type="text" class="form-control" name="cod_producto" value="{{$producto->codigo}}" placeholder="Ingrese codigo del producto" readonly>
             </div>
             <div class="form-group">
                 <label for="descripcion">Descripcion</label>
@@ -33,7 +33,7 @@
                 <label for="subcategorias">Subcategorias</label>
                 <select name="subcategoria" class="form-control">
                     @foreach ($subcategorias as $subc)
-                        <option value="{{$subc->id}}">{{$subc->nombre}}</option>
+                        <option value="{{$subc->id}}" {{ $producto->subcategoria->id === $subc->id ? 'selected' : '' }}>{{$subc->nombre}}</option>
                     @endforeach
                 </select>
             </div>

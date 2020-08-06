@@ -40,7 +40,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $producto = new Producto();
-        $producto->cod_producto = request('codigo');
+        $producto->codigo = request('codigo');
         $producto->descripcion = request('descripcion');
         $producto->observacion = request('observacion');
         $producto->subcategoria_id = $request->get('subcategoria');
@@ -73,14 +73,14 @@ class ProductoController extends Controller
     public function edit(string $codigo)
     {
         return view('productos.edit', [
-            'producto' => Producto::where('cod_producto', 'LIKE', $codigo)->firstOrFail(),
+            'producto' => Producto::where('codigo', 'LIKE', $codigo)->firstOrFail(),
             'subcategorias' => Subcategoria::all()
             ]);
     }
 
     public function update(ProductFormRequest $request, string $codigo)
     {
-        $producto = Producto::where('cod_producto', 'LIKE', $codigo)->firstOrFail();
+        $producto = Producto::where('codigo', 'LIKE', $codigo)->firstOrFail();
 
         $producto->descripcion = $request->get('descripcion');
         $producto->observacion = $request->get('observacion');

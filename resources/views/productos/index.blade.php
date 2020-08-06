@@ -19,15 +19,15 @@
             </thead>
             @foreach ($productos as $producto)
                 <tr>
-                    <td>{{$producto->cod_producto}}</td>
+                    <td>{{$producto->codigo}}</td>
                     <td>{{$producto->descripcion}}</td>
                     <td>{{$producto->solo_minorista == 1 ? 'Solo minorista' : 'Para todos'}}</td>
                     <td>{{$producto->en_stock == 1 ? 'Si hay stock' : 'No hay stock '}}</td>
                     <td>{{$producto->subcategoria->nombre}}</td>
                     <td>{{$producto->subcategoria->categoria->nombre}}</td>
-                    <td><a type="button" class="btn btn-warning" href="{{ route('productos.edit', $producto->cod_producto)}}" >Modificar</a></td>
+                    <td><a type="button" class="btn btn-warning" href="{{ route('productos.edit', $producto->codigo)}}" >Modificar</a></td>
                     <td><a type="button" class="btn btn-danger">Eliminar</a></td>
-                    <td><a type="button" class="btn btn-info">Imagenes</a></td>
+                    <td><a type="button" class="btn btn-info" href="{{ route('product.galleria.index', $producto->codigo) }}">Imagenes</a></td>
                 </tr>
             @endforeach
         </table>
