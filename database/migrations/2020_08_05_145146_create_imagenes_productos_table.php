@@ -25,6 +25,10 @@ class CreateImagenesProductosTable extends Migration
 
             $table->timestamps();
         });
+
+        Schema::table('subcategorias', function(Blueprint $table){
+            $table->boolean('activo')->default(true);
+        });
     }
 
     /**
@@ -35,5 +39,9 @@ class CreateImagenesProductosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('imagenes_productos');
+
+        Schema::table('subcategorias', function(Blueprint $table){
+            $table->dropColumn('activo');
+        });
     }
 }

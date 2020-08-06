@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductFormRequest;
+use App\Http\Requests\AddProductoFormRequest;
+use App\Http\Requests\UpdateProductoFormRequest;
 use App\Producto;
 use App\Subcategoria;
 
@@ -39,7 +40,7 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddProductoFormRequest $request)
     {
         $producto = new Producto();
         $producto->codigo = request('codigo');
@@ -48,6 +49,9 @@ class ProductoController extends Controller
         $producto->subcategoria_id = $request->get('subcategoria');
         $producto->solo_minorista = $request->boolean('solo_minorista');
         $producto->en_stock = $request->boolean('hay_stock');
+        $producto->precio_minorista = $request->get('precioMinorista');
+        $producto->precio_mayorista = $request->get('precioMayorista');
+        $producto->precio_blister = $request->get('precioBlister');
         $producto->activo = true;
 
         $producto->save();
@@ -80,7 +84,7 @@ class ProductoController extends Controller
             ]);
     }
 
-    public function update(ProductFormRequest $request, string $codigo)
+    public function update(UpdateProductoFormRequest $request, string $codigo)
     {
         $producto = Producto::where('codigo', 'LIKE', $codigo)->firstOrFail();
 
@@ -89,6 +93,9 @@ class ProductoController extends Controller
         $producto->subcategoria_id = $request->get('subcategoria');
         $producto->solo_minorista = $request->boolean('solo_minorista');
         $producto->en_stock = $request->boolean('hay_stock');
+        $producto->precio_minorista = $request->get('precioMinorista');
+        $producto->precio_mayorista = $request->get('precioMayorista');
+        $producto->precio_blister = $request->get('precioBlister');
 
         $producto->update();
         return redirect('/productos');
