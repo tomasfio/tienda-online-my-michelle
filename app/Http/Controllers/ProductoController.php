@@ -20,7 +20,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::all();
-        return view('productos.index', ['productos' => $productos]);
+        return view('gestion.productos.index', ['productos' => $productos]);
     }
 
     /**
@@ -31,7 +31,7 @@ class ProductoController extends Controller
     public function create()
     {
         $subcategorias = Subcategoria::all();
-        return view('productos.create', ['subcategorias' => $subcategorias]);
+        return view('gestion.productos.create', ['subcategorias' => $subcategorias]);
     }
 
     /**
@@ -78,7 +78,7 @@ class ProductoController extends Controller
      */
     public function edit(string $codigo)
     {
-        return view('productos.edit', [
+        return view('gestion.productos.edit', [
             'producto' => Producto::where('codigo', 'LIKE', $codigo)->firstOrFail(),
             'subcategorias' => Subcategoria::all()
             ]);

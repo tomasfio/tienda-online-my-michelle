@@ -22,11 +22,11 @@ class SubcategoriaController extends Controller
             $subcategorias = Subcategoria::where('nombre', 'LIKE', '%'.$query.'%')
                 ->orderBy('id', 'asc')
                 ->paginate(20);
-            return view('subcategorias.index', ['subcategorias' => $subcategorias, 'search' => $query]);
+            return view('gestion.subcategorias.index', ['subcategorias' => $subcategorias, 'search' => $query]);
         }
         else{
             $subcategorias = Subcategoria::all()->paginate(20);
-            return view('subcategorias.index', ['subcategorias' => $subcategorias]);
+            return view('gestion.subcategorias.index', ['subcategorias' => $subcategorias]);
         }
 
     }
@@ -39,7 +39,7 @@ class SubcategoriaController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        return view('subcategorias.create', ['categorias' => $categorias]);
+        return view('gestion.subcategorias.create', ['categorias' => $categorias]);
     }
 
     /**
@@ -69,7 +69,7 @@ class SubcategoriaController extends Controller
         $categorias = Categoria::all();
         $subcategoria = Subcategoria::findOrFail($id);
 
-        return view('subcategorias.edit', [
+        return view('gestion.subcategorias.edit', [
             'subcategoria' => $subcategoria,
             'categorias' => $categorias
         ]);
@@ -90,7 +90,7 @@ class SubcategoriaController extends Controller
         $subcategoria->categoria_id = $request->get('categoria');
         $subcategoria->update();
 
-        return redirect('/subcategorias');
+        return redirect('gestion.subcategorias');
     }
 
     /**

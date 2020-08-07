@@ -14,7 +14,7 @@ class GaleriaController extends Controller
     public function index(string $codigo){
         $imagenes = ImagenesProducto::all()->where('cod_producto', 'LIKE', $codigo);
 
-        return view('productos.galleria.index',[
+        return view('gestion.productos.galleria.index',[
             'imagenes' => $imagenes,
             'producto' => Producto::find($codigo)
         ]);

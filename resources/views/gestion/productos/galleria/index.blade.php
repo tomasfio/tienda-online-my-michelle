@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('gestion.layouts.app')
 
 @section('content')
     <div class="container">
         <h2>Galerria de imagenes del producto {{$producto->codigo}}
-            @include('productos.galleria.modal')
+            @include('gestion.productos.galleria.modal')
         </h2>
         <div class="row">
             @foreach ($imagenes as $imagen)
