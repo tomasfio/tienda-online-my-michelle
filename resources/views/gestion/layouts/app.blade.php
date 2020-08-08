@@ -122,7 +122,7 @@
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
                                             Subcategorias
-                                            <?php use App\Subcategoria; $subcategoria_count = Subcategoria::all()->count(); ?>
+                                            <?php use App\Subcategoria; $subcategoria_count = Subcategoria::all()->where('activo', '=', '1')->count(); ?>
                                             <span class="right badge badge-danger">{{ $subcategoria_count ?? '0' }}</span>
                                         </p>
                                     </i>
@@ -135,7 +135,7 @@
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
                                             Productos
-                                            <?php use App\Producto; $products_count = Producto::all()->count(); ?>
+                                            <?php use App\Producto; $products_count = Producto::all()->where('activo', '=', '1')->count(); ?>
                                             <span class="right badge badge-danger">{{ $products_count ?? '0' }}</span>
                                         </p>
                                     </i>

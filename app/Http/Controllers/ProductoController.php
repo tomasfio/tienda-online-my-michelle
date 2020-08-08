@@ -18,10 +18,22 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::all();
-        return view('gestion.productos.index', ['productos' => $productos]);
+        $query = trim($request->get('search'));
+        if($request){
+            $productos = Producto::where('codigo', 'LIKE', "%$query%")
+                ->orWhere('descripcion', 'LIKE', "%$query%")
+                ->orWhere('observacion', 'LIKE', "%$query%")
+                ->orderBy('codigo', 'asc')
+                ->paginate(20);
+                
+                return view('gestion.productos.index', ['productos' => $productos, 'search' => $query]);
+        }
+        else{
+            $productos = Producto::all()->where('activo', '=', '1')->paginate(20);
+            return view('gestion.productos.index', ['productos' => $productos]);
+        }
     }
 
     /**

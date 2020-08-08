@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SubcategoriFormRequest;
 use App\Categoria;
 use App\Subcategoria;
+
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class SubcategoriaController extends Controller
 {
@@ -20,12 +22,13 @@ class SubcategoriaController extends Controller
 
         if($request){
             $subcategorias = Subcategoria::where('nombre', 'LIKE', '%'.$query.'%')
+                ->where('activo', '=', '1')
                 ->orderBy('id', 'asc')
                 ->paginate(20);
             return view('gestion.subcategorias.index', ['subcategorias' => $subcategorias, 'search' => $query]);
         }
         else{
-            $subcategorias = Subcategoria::all()->paginate(20);
+            $subcategorias = Subcategoria::all()->where('activo', '=', '1')->paginate(20);
             return view('gestion.subcategorias.index', ['subcategorias' => $subcategorias]);
         }
 
@@ -102,7 +105,13 @@ class SubcategoriaController extends Controller
     public function destroy(int $id)
     {
         $subcategoria = Subcategoria::findOrFail($id);
-        $subcategoria->delete();
+        try{
+            $subcategoria->delete();
+        }
+        catch (QueryException $e) {
+            $subcategoria->activo = false;
+            $subcategoria->update();
+        }
 
         return redirect('/subcategorias');
     }
