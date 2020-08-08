@@ -18,4 +18,9 @@ class Producto extends Model
     {
         return $this->hasMany(ImagenesProducto::class, 'cod_producto', 'codigo');
     }
+
+    public function opciones()
+    {
+        return $this->hasMany(OpcionProducto::class, 'cod_producto', 'codigo');
+    }
 }

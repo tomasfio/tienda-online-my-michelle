@@ -25,6 +25,7 @@
                     <td>{{$producto->en_stock == 1 ? 'Si hay stock' : 'No hay stock '}}</td>
                     <td>{{$producto->subcategoria->nombre}}</td>
                     <td>{{$producto->subcategoria->categoria->nombre}}</td>
+                    <td><a type="button" class="btn btn-info" href="{{ route('product.galleria.index', $producto->codigo) }}">Imagenes</a></td>
                     <td><a type="button" class="btn btn-warning" href="{{ route('productos.edit', $producto->codigo)}}" >Modificar</a></td>
                     <td>
                         <form action="{{ route('productos.destroy', $producto->codigo) }}" method="post">
@@ -33,7 +34,6 @@
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
-                    <td><a type="button" class="btn btn-info" href="{{ route('product.galleria.index', $producto->codigo) }}">Imagenes</a></td>
                 </tr>
             @endforeach
         </table>

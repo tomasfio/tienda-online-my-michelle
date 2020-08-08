@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddProductoFormRequest;
 use App\Http\Requests\UpdateProductoFormRequest;
+use App\OpcionProducto;
 use App\Producto;
 use App\Subcategoria;
 
@@ -55,6 +56,18 @@ class ProductoController extends Controller
         $producto->activo = true;
 
         $producto->save();
+        
+        $opcionesNames = $request->input('nombreOpc.*');
+        $i = 0;
+        foreach($opcionesNames as $opcName){
+            $opcion = new OpcionProducto();
+            $opcion->cod_producto = $producto->codigo;
+            $opcion->nombre_opcion = $opcName;
+            $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+            $opcion->save();
+
+            $i++;
+        }
 
         return redirect('/productos');
     }
@@ -80,6 +93,7 @@ class ProductoController extends Controller
     {
         return view('gestion.productos.edit', [
             'producto' => Producto::where('codigo', 'LIKE', $codigo)->firstOrFail(),
+            'opciones_producto' => OpcionProducto::all()->where('cod_producto', 'LIKE', $codigo),
             'subcategorias' => Subcategoria::all()
             ]);
     }
@@ -98,6 +112,29 @@ class ProductoController extends Controller
         $producto->precio_blister = $request->get('precioBlister');
 
         $producto->update();
+        $cantOpciones = count($request->input('nombreOpc.*'));
+
+        $i = 0;
+        $opcionesIdUpdate = $request->input('idOpcionUpdate.*');
+
+        if($opcionesIdUpdate != null){
+            foreach($opcionesIdUpdate as $opcIdUpdate){
+                $opcionUpdate = OpcionProducto::findOrFail($opcIdUpdate);
+                $opcionUpdate->nombre_opcion = $request->input("nombreOpc.$i");
+                $opcionUpdate->stock_opcion = $request->boolean("stockOpc.$i");
+                $opcionUpdate->update();
+    
+                $i++;
+            }
+        }
+
+        for( ; $i < $cantOpciones; $i++){
+            $opcion = new OpcionProducto();
+            $opcion->cod_producto = $producto->codigo;
+            $opcion->nombre_opcion = $request->input("nombreOpc.$i");
+            $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+            $opcion->save();
+        }
         return redirect('/productos');
     }
 
