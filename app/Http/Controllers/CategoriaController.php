@@ -39,7 +39,7 @@ class CategoriaController extends Controller
         $categoria->nombre = $request->get('nombre');
         $categoria->save();
 
-        return redirect('/categorias');
+        return redirect('/gestion/categorias');
     }
     
     public function edit($id)
@@ -54,7 +54,7 @@ class CategoriaController extends Controller
         $categoria->nombre = $request->get('nombre');
         $categoria->update();
 
-        return redirect('/categorias');
+        return redirect('/gestion/categorias');
     }
     
     public function destroy($id)
@@ -69,6 +69,6 @@ class CategoriaController extends Controller
             $categoria->update();
         }
 
-        return redirect('/categorias');
+        return redirect('/gestion/categorias');
     }
 }

@@ -105,7 +105,7 @@
 
                             @can('users_abm')
                             <li class="nav-item">
-                                <a href="{{ url('usuarios')}}"
+                                <a href="{{ url('gestion/usuarios')}}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
@@ -117,7 +117,7 @@
                             @endcan
 
                             <li class="nav-item">
-                                <a href="{{ url('categorias')}}"
+                                <a href="{{ url('gestion/categorias')}}"
                                     class="{{ Request::path() === 'categorias' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
@@ -130,7 +130,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ url('subcategorias')}}"
+                                <a href="{{ url('gestion/subcategorias')}}"
                                     class="{{ Request::path() === 'subcategorias' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
@@ -143,7 +143,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ url('productos')}}"
+                                <a href="{{ url('gestion/productos')}}"
                                     class="{{ Request::path() === 'productos' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>

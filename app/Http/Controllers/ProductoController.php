@@ -83,7 +83,7 @@ class ProductoController extends Controller
             }
         }
 
-        return redirect('/productos');
+        return redirect('/gestion/productos');
     }
 
     /**
@@ -149,7 +149,7 @@ class ProductoController extends Controller
             $opcion->stock_opcion = $request->boolean("stockOpc.$i");
             $opcion->save();
         }
-        return redirect('/productos');
+        return redirect('/gestion/productos');
     }
 
     /**
@@ -163,6 +163,6 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($codigo);
         $producto->DeleteImagenes();
         $producto->delete();
-        return redirect('/productos');
+        return redirect('/gestion/productos');
     }
 }

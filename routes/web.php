@@ -9,7 +9,7 @@ Route::group(['domain' => env('APP_URL')], function(){
     });
 });
 
-Route::group(['domain' => 'gestion.' . env('APP_URL')], function(){
+Route::prefix('gestion')->group(function(){
     Route::get('/', 'AdminHomeController@index');
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
