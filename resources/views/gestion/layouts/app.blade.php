@@ -117,6 +117,19 @@
                             @endcan
 
                             <li class="nav-item">
+                                <a href="{{ url('categorias')}}"
+                                    class="{{ Request::path() === 'categorias' ? 'nav-link active' : 'nav-link' }}">
+                                    <i class="nav-icon fas fa-diamond"></i>
+                                        <p>
+                                            Categorias
+                                            <?php use App\Categoria; $categoria_count = Categoria::all()->where('activo', '=', '1')->count(); ?>
+                                            <span class="right badge badge-danger">{{ $categoria_count ?? '0' }}</span>
+                                        </p>
+                                    </i>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="{{ url('subcategorias')}}"
                                     class="{{ Request::path() === 'subcategorias' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>

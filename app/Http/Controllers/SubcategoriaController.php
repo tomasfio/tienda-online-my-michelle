@@ -41,7 +41,7 @@ class SubcategoriaController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::all()->where('activo', '=', '1');
         return view('gestion.subcategorias.create', ['categorias' => $categorias]);
     }
 
@@ -69,7 +69,7 @@ class SubcategoriaController extends Controller
      */
     public function edit(int $id)
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::all()->where('activo', '=', '1');
         $subcategoria = Subcategoria::findOrFail($id);
 
         return view('gestion.subcategorias.edit', [
@@ -105,6 +105,7 @@ class SubcategoriaController extends Controller
     public function destroy(int $id)
     {
         $subcategoria = Subcategoria::findOrFail($id);
+        $subcategoria->deleteProductos();
         try{
             $subcategoria->delete();
         }

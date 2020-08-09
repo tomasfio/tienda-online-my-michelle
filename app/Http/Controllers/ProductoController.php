@@ -43,7 +43,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $subcategorias = Subcategoria::all();
+        $subcategorias = Subcategoria::all()->where('activo', '=', '1');
         return view('gestion.productos.create', ['subcategorias' => $subcategorias]);
     }
 
@@ -71,14 +71,16 @@ class ProductoController extends Controller
         
         $opcionesNames = $request->input('nombreOpc.*');
         $i = 0;
-        foreach($opcionesNames as $opcName){
-            $opcion = new OpcionProducto();
-            $opcion->cod_producto = $producto->codigo;
-            $opcion->nombre_opcion = $opcName;
-            $opcion->stock_opcion = $request->boolean("stockOpc.$i");
-            $opcion->save();
-
-            $i++;
+        if($opcionesNames != null){
+            foreach($opcionesNames as $opcName){
+                $opcion = new OpcionProducto();
+                $opcion->cod_producto = $producto->codigo;
+                $opcion->nombre_opcion = $opcName;
+                $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+                $opcion->save();
+    
+                $i++;
+            }
         }
 
         return redirect('/productos');
@@ -106,7 +108,7 @@ class ProductoController extends Controller
         return view('gestion.productos.edit', [
             'producto' => Producto::where('codigo', 'LIKE', $codigo)->firstOrFail(),
             'opciones_producto' => OpcionProducto::all()->where('cod_producto', 'LIKE', $codigo),
-            'subcategorias' => Subcategoria::all()
+            'subcategorias' => Subcategoria::all()->where('activo', '=', '1')
             ]);
     }
 
@@ -159,14 +161,7 @@ class ProductoController extends Controller
     public function destroy(string $codigo)
     {
         $producto = Producto::findOrFail($codigo);
-
-        foreach($producto->imagenes as $imagen){
-            $image_path = public_path().'/img/'.$imagen->nombre_imagen;
-            if(File::exists($image_path)){
-                File::delete($image_path);
-            }
-        }
-
+        $producto->DeleteImagenes();
         $producto->delete();
         return redirect('/productos');
     }

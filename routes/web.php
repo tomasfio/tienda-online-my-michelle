@@ -18,6 +18,7 @@ Route::group(['domain' => 'gestion.localhost'], function(){
 
     Route::group(['middleware' => ['auth', 'permission:gestionar_pagina']], function () {
         Route::get('/usuarios', 'UserController@index')->middleware('permission:users_abm');
+        Route::resource('/categorias', 'CategoriaController');
         Route::resource('/productos', 'ProductoController');
         Route::resource('/subcategorias', 'SubcategoriaController');
     
