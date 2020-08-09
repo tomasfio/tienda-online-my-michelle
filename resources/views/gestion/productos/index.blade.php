@@ -35,7 +35,7 @@
                         <td><a type="button" class="btn btn-info" href="{{ route('product.galleria.index', $producto->codigo) }}">Imagenes</a></td>
                         <td><a type="button" class="btn btn-warning" href="{{ route('productos.edit', $producto->codigo)}}" >Modificar</a></td>
                         <td>
-                            <form action="{{ route('productos.destroy', $producto->codigo) }}" method="post">
+                            <form action="{{ route('productos.destroy', $producto->codigo) }}" method="post" onsubmit="confirmDelete('{{$producto->codigo}}', this)">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -51,4 +51,15 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        function confirmDelete(producto, form){
+            event.preventDefault();
+            if(confirm("¿Desea borrar el producto " + producto + "?\n")){
+                form.submit();
+            }
+        }
+    </script>
+    @endpush
 @endsection

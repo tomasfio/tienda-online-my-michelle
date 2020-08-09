@@ -29,7 +29,7 @@
                             <th>{{$cat->nombre}}</th>
                             <th><a type="button" class="btn btn-warning" href="{{ route('categorias.edit', $cat->id)}}">Modificar</a></th>
                             <th>
-                                <form action="{{ route('categorias.destroy', $cat->id)}}" method="post">
+                                <form action="{{ route('categorias.destroy', $cat->id)}}" method="post" onsubmit="confirmDelete('{{$cat->nombre}}', this)">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Eliminar</button>
@@ -47,4 +47,15 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        function confirmDelete(categoria, form){
+            event.preventDefault();
+            if(confirm("¿Desea borrar la categoria " + categoria + "?\nRecuerde que si borrar la categoria, se borraran todas las sbucategorias y productos relaciondos")){
+                form.submit();
+            }
+        }
+    </script>
+    @endpush
 @endsection
