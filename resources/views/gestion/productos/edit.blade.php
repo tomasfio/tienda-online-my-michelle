@@ -43,21 +43,31 @@
                         @enderror
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="precioMinorista">Precio minorista</label>
                             <input type="number" class="form-control" name="precioMinorista" placeholder="Ingrese precio minorista del producto..." step="0.01" value="{{$producto->precio_minorista}}">
                             @error('precioMinorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="precioMayorista">Precio mayorista</label>
                             <input type="number" class="form-control" name="precioMayorista" placeholder="Ingrese precio mayorista del producto..." step="0.01" value="{{$producto->precio_mayorista}}">
                             @error('precioMayorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cantidadBlister">Cantidad del blister</label>
+                            <input type="number" class="form-control" name="cantidadBlister" placeholder="Ingrese cantidad de productos del blister..." min="1" value="{{$producto->cantidad_blister}}">
+                            @error('cantidadBlister')
+                                <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="precioBlister">Precio blister</label>
                             <input type="number" class="form-control" name="precioBlister" placeholder="Ingrese precio blister del producto..." step="0.01" value="{{$producto->precio_blister}}">
                             @error('precioBlister')
@@ -65,6 +75,7 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="row pl-50">
                         <div class="col-6 form-group form-check">
                             <input type="checkbox" class="form-check-input" name="solo_minorista" {{$producto->solo_minorista == 1 ? 'checked' : ''}}>

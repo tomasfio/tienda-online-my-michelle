@@ -30,7 +30,8 @@ class AddProductoFormRequest extends FormRequest
             'observacion' => 'max:5000',
             'precioMinorista' => 'nullable|numeric',
             'precioMayorista' => 'nullable|numeric',
-            'precioBlister' => 'nullable|numeric'
+            'precioBlister' => 'nullable|numeric',
+            'cantidadBlister' => 'nullable|numeric|min:1'
         ];
     }
 }

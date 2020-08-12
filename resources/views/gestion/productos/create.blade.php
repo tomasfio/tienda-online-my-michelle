@@ -14,7 +14,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="codigo">Codigo</label>
-                            <input type="text" class="form-control" name="codigo" placeholder="Ingrese codigo del producto">
+                            <input type="text" class="form-control" name="codigo" placeholder="Ingrese codigo del producto" required>
                             @error('codigo')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion</label>
-                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese descripcion del producto"></textarea>
+                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese descripcion del producto" required></textarea>
                         @error('descripcion')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -45,21 +45,31 @@
                     </div>
         
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="precioMinorista">Precio minorista</label>
                             <input type="number" class="form-control" name="precioMinorista" placeholder="Ingrese precio minorista del producto..." step="0.01">
                             @error('precioMinorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="precioMayorista">Precio mayorista</label>
                             <input type="number" class="form-control" name="precioMayorista" placeholder="Ingrese precio mayorista del producto..." step="0.01">
                             @error('precioMayorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
-                        <div class="form-group col-md-4">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="cantidadBlister">Cantidad del blister</label>
+                            <input type="number" class="form-control" name="cantidadBlister" placeholder="Ingrese cantidad de productos del blister..." min="1">
+                            @error('cantidadBlister')
+                                <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="precioBlister">Precio blister</label>
                             <input type="number" class="form-control" name="precioBlister" placeholder="Ingrese precio blister del producto..." step="0.01">
                             @error('precioBlister')

@@ -27,11 +27,11 @@ class ProductoController extends Controller
                 ->orWhere('observacion', 'LIKE', "%$query%")
                 ->orderBy('codigo', 'asc')
                 ->paginate(20);
-                
-                return view('gestion.productos.index', ['productos' => $productos, 'search' => $query]);
+            return view('gestion.productos.index', ['productos' => $productos, 'search' => $query]);
         }
         else{
             $productos = Producto::all()->where('activo', '=', '1')->paginate(20);
+
             return view('gestion.productos.index', ['productos' => $productos]);
         }
     }
@@ -65,6 +65,7 @@ class ProductoController extends Controller
         $producto->precio_minorista = $request->get('precioMinorista');
         $producto->precio_mayorista = $request->get('precioMayorista');
         $producto->precio_blister = $request->get('precioBlister');
+        $producto->cantidad_blister = $request->get('cantidadBlister');
         $producto->activo = true;
 
         $producto->save();
@@ -124,30 +125,33 @@ class ProductoController extends Controller
         $producto->precio_minorista = $request->get('precioMinorista');
         $producto->precio_mayorista = $request->get('precioMayorista');
         $producto->precio_blister = $request->get('precioBlister');
+        $producto->cantidad_blister = $request->get('cantidadBlister');
 
         $producto->update();
-        $cantOpciones = count($request->input('nombreOpc.*'));
-
-        $i = 0;
-        $opcionesIdUpdate = $request->input('idOpcionUpdate.*');
-
-        if($opcionesIdUpdate != null){
-            foreach($opcionesIdUpdate as $opcIdUpdate){
-                $opcionUpdate = OpcionProducto::findOrFail($opcIdUpdate);
-                $opcionUpdate->nombre_opcion = $request->input("nombreOpc.$i");
-                $opcionUpdate->stock_opcion = $request->boolean("stockOpc.$i");
-                $opcionUpdate->update();
+        if($request->input('nombreOpc.*') != null){
+            $cantOpciones = count($request->input('nombreOpc.*'));
     
-                $i++;
+            $i = 0;
+            $opcionesIdUpdate = $request->input('idOpcionUpdate.*');
+    
+            if($opcionesIdUpdate != null){
+                foreach($opcionesIdUpdate as $opcIdUpdate){
+                    $opcionUpdate = OpcionProducto::findOrFail($opcIdUpdate);
+                    $opcionUpdate->nombre_opcion = $request->input("nombreOpc.$i");
+                    $opcionUpdate->stock_opcion = $request->boolean("stockOpc.$i");
+                    $opcionUpdate->update();
+        
+                    $i++;
+                }
             }
-        }
-
-        for( ; $i < $cantOpciones; $i++){
-            $opcion = new OpcionProducto();
-            $opcion->cod_producto = $producto->codigo;
-            $opcion->nombre_opcion = $request->input("nombreOpc.$i");
-            $opcion->stock_opcion = $request->boolean("stockOpc.$i");
-            $opcion->save();
+    
+            for( ; $i < $cantOpciones; $i++){
+                $opcion = new OpcionProducto();
+                $opcion->cod_producto = $producto->codigo;
+                $opcion->nombre_opcion = $request->input("nombreOpc.$i");
+                $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+                $opcion->save();
+            }
         }
         return redirect('/gestion/productos');
     }

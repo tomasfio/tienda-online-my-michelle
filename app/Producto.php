@@ -24,6 +24,13 @@ class Producto extends Model
     {
         return $this->hasMany(OpcionProducto::class, 'cod_producto', 'codigo');
     }
+    
+    public function imagen_principal()
+    {
+        return $this->hasOne(ImagenesProducto::class, 'cod_producto', 'codigo')
+            ->where('principal', '=', '1')
+            ->oldest();
+    }
 
     public function DeleteImagenes(){
         if($this->imagenes != null){
