@@ -18,7 +18,7 @@ class AlterProductoAndSubcategoria extends Migration
         });
 
         Schema::table('subcategorias', function(Blueprint $table){
-            $table->string('nombre_iamgen')->nullable()->after('categoria_id');
+            $table->string('nombre_imagen', 500)->nullable()->after('categoria_id');
         });
     }
 
@@ -34,7 +34,7 @@ class AlterProductoAndSubcategoria extends Migration
          });
  
          Schema::table('subcategorias', function(Blueprint $table){
-             $table->dropColumn('nombre_iamgen');
+             $table->dropColumn('nombre_imagen');
          });
     }
 }

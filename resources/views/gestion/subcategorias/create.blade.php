@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Registrar nueva subcategoria</h2>
-        <form action="/gestion/subcategorias" method="post">
+        <form action="/gestion/subcategorias" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -20,6 +20,13 @@
                         <option value="{{$cat->id}}">{{$cat->nombre}}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="">Imagen subcategoria</label>
+                <input name="imagen" type="file" class="form-control">
+                @error('imagen')
+                    <div class="alert alert-danger">{{$message}}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">Registrar</button>

@@ -17,6 +17,7 @@
 
                 <table class="table table-hover">
                     <thead>
+                        <th></th>
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Categoria</th>
@@ -26,6 +27,12 @@
                     <tbody>
                         @foreach ($subcategorias as $subc)
                         <tr>
+                            <td>
+                                @if ($subc->nombre_imagen != null)
+                                <img style="width:50px; height:50px;" src="{{ asset('/img/'.$subc->nombre_imagen) }}" 
+                                alt="Imagen no encotnrad" class="img">
+                                @endif
+                            </td>
                             <th>{{$subc->id}}</th>
                             <th>{{$subc->nombre}}</th>
                             <th>{{$subc->categoria->nombre}}</th>

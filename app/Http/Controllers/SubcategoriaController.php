@@ -56,6 +56,13 @@ class SubcategoriaController extends Controller
         $subcategoria = new Subcategoria();
         $subcategoria->nombre = $request->get('nombre');
         $subcategoria->categoria_id = $request->get('categoria');
+        if($request->imagen){
+            $file = $request->imagen;
+            $nombre_imagen = str_replace(' ', '_', $request->get('nombre')) . '_' . date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path().'/img', $nombre_imagen);
+            $subcategoria->nombre_imagen = $nombre_imagen;
+        }
+
         $subcategoria->save();
 
         return redirect('/gestion/subcategorias');
@@ -91,9 +98,17 @@ class SubcategoriaController extends Controller
 
         $subcategoria->nombre = $request->get('nombre');
         $subcategoria->categoria_id = $request->get('categoria');
+        if($request->imagen){
+            $subcategoria->delete_imagen();
+            $file = $request->imagen;
+            $nombre_imagen = str_replace(' ', '_', $request->get('nombre')) . '_' . date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path().'/img', $nombre_imagen);
+            $subcategoria->nombre_imagen = $nombre_imagen;
+        }
+
         $subcategoria->update();
 
-        return redirect('gestion.subcategorias');
+        return redirect('/gestion/subcategorias');
     }
 
     /**
@@ -107,6 +122,7 @@ class SubcategoriaController extends Controller
         $subcategoria = Subcategoria::findOrFail($id);
         $subcategoria->deleteProductos();
         try{
+            $subcategoria->delete_imagen();
             $subcategoria->delete();
         }
         catch (QueryException $e) {

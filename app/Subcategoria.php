@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\File;
 
 class Subcategoria extends Model
 {
@@ -14,6 +15,17 @@ class Subcategoria extends Model
 
     public function productos(){
         return $this->hasMany(Producto::class, 'subcategoria_id', 'id');
+    }
+
+    public function delete_imagen(){
+        if($this->nombre_imagen != null){
+            $image_path = public_path().'/img/'.$this->nombre_imagen;
+            if(File::exists($image_path)){
+                File::delete($image_path);
+            }
+
+            $this->nombre_imagen = null;
+        }
     }
 
     public function deleteProductos(){
