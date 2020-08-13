@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Gestion;
 
 use App\Http\Requests\ImagenProductoRequest;
 use App\ImagenesProducto;
@@ -8,6 +8,7 @@ use App\Producto;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class GaleriaController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Gestion;
 
 use App\Http\Requests\AddProductoFormRequest;
 use App\Http\Requests\UpdateProductoFormRequest;
@@ -10,6 +10,7 @@ use App\Subcategoria;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductoController extends Controller
 {

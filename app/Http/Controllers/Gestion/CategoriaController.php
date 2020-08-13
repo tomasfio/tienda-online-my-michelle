@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Gestion;
 
 use App\Categoria;
 use App\Http\Requests\CategoriaRequest;
@@ -8,6 +8,7 @@ use App\Producto;
 use App\Subcategoria;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoriaController extends Controller
 {

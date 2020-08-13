@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Gestion;
 
 use App\Http\Requests\SubcategoriFormRequest;
 use App\Categoria;
 use App\Subcategoria;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use App\Http\Controllers\Controller;
 
 class SubcategoriaController extends Controller
 {
