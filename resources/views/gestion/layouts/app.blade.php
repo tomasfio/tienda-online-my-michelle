@@ -97,25 +97,13 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                             data-accordion="false">
 
+                            
                             <li class="nav-item">
                                 <a href="/" class="{{ Request::path() === '/' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-home"></i>
                                     <p>Inicio</p>
                                 </a>
                             </li>
-
-                            @can('users_abm')
-                            <li class="nav-item">
-                                <a href="{{ url('gestion/usuarios')}}"
-                                    class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>
-                                        Usuarios
-                                        <span class="right badge badge-danger">{{ $users_count ?? '0' }}</span>
-                                    </p>
-                                </a>
-                            </li>
-                            @endcan
 
                             <li class="nav-item">
                                 <a href="{{ url('gestion/categorias')}}"
@@ -151,6 +139,34 @@
                                             Productos
                                             <?php use App\Producto; $products_count = Producto::all()->where('activo', '=', '1')->count(); ?>
                                             <span class="right badge badge-danger">{{ $products_count ?? '0' }}</span>
+                                        </p>
+                                    </i>
+                                </a>
+                            </li>
+
+                            <hr>
+
+                            @can('users_abm')
+                            <li class="nav-item">
+                                <a href="{{ url('gestion/usuarios')}}"
+                                    class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Usuarios
+                                        <span class="right badge badge-danger">{{ $users_count ?? '0' }}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            @endcan
+
+                            <li class="nav-item">
+                                <a href="{{ url('gestion/clientes')}}"
+                                    class="{{ Request::path() === 'clientes' ? 'nav-link active' : 'nav-link' }}">
+                                    <i class="nav-icon fas fa-diamond"></i>
+                                        <p>
+                                            Clientes
+                                            <?php use App\Cliente; $clientes_count = Cliente::all()->where('activo', '=', '1')->count(); ?>
+                                            <span class="right badge badge-danger">{{ $clientes_count ?? '0' }}</span>
                                         </p>
                                     </i>
                                 </a>

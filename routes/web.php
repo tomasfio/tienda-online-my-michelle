@@ -20,6 +20,7 @@ Route::prefix('gestion')->group(function(){
         Route::resource('/categorias', 'Gestion\CategoriaController');
         Route::resource('/productos', 'Gestion\ProductoController');
         Route::resource('/subcategorias', 'Gestion\SubcategoriaController');
+        Route::resource('/clientes', 'Gestion\ClienteController');
     
         Route::get('/productos/{producto}/galeria', 'Gestion\GaleriaController@index')->name('product.galleria.index');
         Route::post('/productos/{producto}/galeria', 'Gestion\GaleriaController@add')->name('product.galleria.add');
