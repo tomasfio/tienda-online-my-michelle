@@ -67,7 +67,7 @@ class ClienteController extends Controller
         $cliente->assignRole('cliente');
         $cliente->save();
 
-        return redirect('/gestion/clientes');
+        return redirect('/clientes');
     }
 
     /**
@@ -112,7 +112,7 @@ class ClienteController extends Controller
         $cliente->numero_celular = $request->get('numTel');
         $cliente->update();
 
-        return redirect('/gestion/clientes');
+        return redirect('/clientes');
     }
 
     /**
@@ -133,6 +133,6 @@ class ClienteController extends Controller
             $cliente->update();
         }
 
-        return redirect('/gestion/clientes');
+        return redirect('/clientes');
     }
 }

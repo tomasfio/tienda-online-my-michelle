@@ -67,7 +67,7 @@ class SubcategoriaController extends Controller
 
         $subcategoria->save();
 
-        return redirect('/gestion/subcategorias');
+        return redirect('/subcategorias');
     }
 
     /**
@@ -110,7 +110,7 @@ class SubcategoriaController extends Controller
 
         $subcategoria->update();
 
-        return redirect('/gestion/subcategorias');
+        return redirect('/subcategorias');
     }
 
     /**
@@ -132,6 +132,6 @@ class SubcategoriaController extends Controller
             $subcategoria->update();
         }
 
-        return redirect('/gestion/subcategorias');
+        return redirect('/subcategorias');
     }
 }

@@ -40,7 +40,7 @@ class GaleriaController extends Controller
         $imagen->save();
 
 
-        return redirect("/gestion/productos/$codigo/galeria");
+        return redirect("/productos/$codigo/galeria");
     }
 
     public function delete(string $imagen){
@@ -53,7 +53,7 @@ class GaleriaController extends Controller
         }
 
         $img->delete();
-        return redirect("/gestion/productos/$codigo/galeria");
+        return redirect("/productos/$codigo/galeria");
     }
 
     public function update(string $imagen){
@@ -70,6 +70,6 @@ class GaleriaController extends Controller
 
         $img->principal = true;
         $img->update();
-        return redirect("/gestion/productos/$img->cod_producto/galeria");
+        return redirect("/productos/$img->cod_producto/galeria");
     }
 }

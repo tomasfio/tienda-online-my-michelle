@@ -106,7 +106,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ url('gestion/categorias')}}"
+                                <a href="{{ url('categorias')}}"
                                     class="{{ Request::path() === 'categorias' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
@@ -119,7 +119,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ url('gestion/subcategorias')}}"
+                                <a href="{{ url('subcategorias')}}"
                                     class="{{ Request::path() === 'subcategorias' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
@@ -132,7 +132,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="{{ url('gestion/productos')}}"
+                                <a href="{{ url('productos')}}"
                                     class="{{ Request::path() === 'productos' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>
@@ -148,7 +148,7 @@
 
                             @can('users_abm')
                             <li class="nav-item">
-                                <a href="{{ url('gestion/usuarios')}}"
+                                <a href="{{ url('usuarios')}}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
@@ -160,7 +160,7 @@
                             @endcan
 
                             <li class="nav-item">
-                                <a href="{{ url('gestion/clientes')}}"
+                                <a href="{{ url('clientes')}}"
                                     class="{{ Request::path() === 'clientes' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-diamond"></i>
                                         <p>

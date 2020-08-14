@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form action="/gestion/clientes" method="post">
+        <form action="/clientes" method="post">
             <h2>Resgistrar nuevo cliente
                 <button type="submit" class="btn btn-primary float-right">Registrar</button>
             </h2>

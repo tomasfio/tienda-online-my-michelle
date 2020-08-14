@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form method="POST" action="/gestion/productos">
+        <form method="POST" action="/productos">
             <h2>Resgistrar nuevo producto
                 <button type="submit" class="btn btn-primary float-right">Registrar</button>
             </h2>

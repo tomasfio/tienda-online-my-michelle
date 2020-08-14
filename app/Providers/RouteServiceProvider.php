@@ -42,8 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
-
+        //$this->mapApiRoutes();
+        $this->mapAdminRoutes();
         $this->mapWebRoutes();
     }
 
@@ -56,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::domain(env('SITE_URL'))
+        Route::domain(env('APP_URL'))
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
@@ -75,5 +75,13 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::domain('gestion.' . env('APP_URL'))
+             ->middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/gestion.php'));
     }
 }
