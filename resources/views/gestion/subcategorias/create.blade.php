@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Registrar nueva subcategoria</h2>
-        <form action="/subcategorias" method="post" enctype="multipart/form-data">
+        <form action="/subcategorias" method="post" enctype="multipart/form-data" autocomplete="off">
             @csrf
 
             <div class="form-group">

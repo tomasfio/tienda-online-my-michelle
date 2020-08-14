@@ -11,6 +11,7 @@ use App\Subcategoria;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 
 class ProductoController extends Controller
 {
@@ -79,6 +80,7 @@ class ProductoController extends Controller
                 $opcion->cod_producto = $producto->codigo;
                 $opcion->nombre_opcion = $opcName;
                 $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+                $opcion->activo = true;
                 $opcion->save();
     
                 $i++;
@@ -109,7 +111,7 @@ class ProductoController extends Controller
     {
         return view('gestion.productos.edit', [
             'producto' => Producto::where('codigo', 'LIKE', $codigo)->firstOrFail(),
-            'opciones_producto' => OpcionProducto::all()->where('cod_producto', 'LIKE', $codigo),
+            'opciones_producto' => OpcionProducto::all()->where('cod_producto', 'LIKE', $codigo)->where('activo', '=', '1'),
             'subcategorias' => Subcategoria::all()->where('activo', '=', '1')
             ]);
     }
@@ -138,9 +140,20 @@ class ProductoController extends Controller
             if($opcionesIdUpdate != null){
                 foreach($opcionesIdUpdate as $opcIdUpdate){
                     $opcionUpdate = OpcionProducto::findOrFail($opcIdUpdate);
-                    $opcionUpdate->nombre_opcion = $request->input("nombreOpc.$i");
-                    $opcionUpdate->stock_opcion = $request->boolean("stockOpc.$i");
-                    $opcionUpdate->update();
+                    if($request->boolean("eliminarOpc.$i")){
+                        try{
+                            $opcionUpdate->delete();
+                        }
+                        catch(QueryException $e){
+                            $opcionUpdate->activo = false;
+                            $opcionUpdate->update();
+                        }
+                    }
+                    else{
+                        $opcionUpdate->nombre_opcion = $request->input("nombreOpc.$i");
+                        $opcionUpdate->stock_opcion = $request->boolean("stockOpc.$i");
+                        $opcionUpdate->update();
+                    }
         
                     $i++;
                 }
@@ -151,6 +164,7 @@ class ProductoController extends Controller
                 $opcion->cod_producto = $producto->codigo;
                 $opcion->nombre_opcion = $request->input("nombreOpc.$i");
                 $opcion->stock_opcion = $request->boolean("stockOpc.$i");
+                $opcion->activo = true;
                 $opcion->save();
             }
         }

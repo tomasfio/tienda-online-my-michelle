@@ -18,11 +18,11 @@
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese nombre del cliente..." value="{{$cliente->nombre}}" required>
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese nombre del cliente..." value="{{$cliente->nombre}}" autocomplete="off" required>
                         </div>
                         <div class="form-group col-6">
                             <label for="apellido">Apellido</label>
-                            <input type="text" name="apellido"  id="apellido" class="form-control" placeholder="Ingrese apellido del cliente..." value="{{$cliente->apellido}}" required>
+                            <input type="text" name="apellido"  id="apellido" class="form-control" placeholder="Ingrese apellido del cliente..." value="{{$cliente->apellido}}" autocomplete="off" required>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="documento">Documento</label>
-                            <input type="text" name="documento" id="documento" class="form-control" placeholder="Ingrese numero de dni.." value="{{$cliente->documento}}">
+                            <input type="text" name="documento" id="documento" class="form-control" placeholder="Ingrese numero de dni.." autocomplete="off" value="{{$cliente->documento}}">
                         </div>
                         <div class="form-group col-6">
                             <label for="cel">Celular</label>
@@ -52,7 +52,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">15</span>
                                 </div>
-                                <input type="tel" name="numTel" id="numTel" class="form-control" value="{{$cliente->numero_celular}}" required>
+                                <input type="tel" name="numTel" id="numTel" class="form-control" value="{{$cliente->numero_celular}}" autocomplete="off" required>
                             </div>
                         </div>
                     </div>

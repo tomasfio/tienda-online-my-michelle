@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form method="POST" action="/productos">
+        <form method="POST" action="/productos" autocomplete="off">
             <h2>Resgistrar nuevo producto
                 <button type="submit" class="btn btn-primary float-right">Registrar</button>
             </h2>
@@ -85,7 +85,7 @@
                             <label class="form-check-label" for="solo_minorista">¿Solo minorista?</label>
                         </div>
                         <div class="col-3 form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="hay_stock">
+                            <input type="checkbox" class="form-check-input" name="hay_stock" checked>
                             <label class="form-check-label" for="hay_stock">Hay stock</label>
                         </div>
                     </div>

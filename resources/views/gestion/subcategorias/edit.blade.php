@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Editar subcategoria: {{$subcategoria->nombre}}</h2>
-        <form action="{{ route('subcategorias.update', $subcategoria->id)}}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('subcategorias.update', $subcategoria->id)}}" method="post" enctype="multipart/form-data" autocomplete="off">
             @method('PUT')
             @csrf
 

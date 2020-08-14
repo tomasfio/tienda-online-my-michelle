@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <form method="POST" action="{{ route('productos.update', $producto->codigo) }}">
+        <form method="POST" action="{{ route('productos.update', $producto->codigo) }}" autocomplete="off">
             <h2>Resgistrar nuevo producto
                 <button type="submit" class="btn btn-primary float-right">Guardar cambios</button>
             </h2>
@@ -95,16 +95,17 @@
                             <tr>
                                 <td>Nombre</td>
                                 <td>Stock</td>
-                                <td></td>
+                                <td>¿Eliminar opcion?</td>
                             </tr>
                         </thead>
                       <tbody>
                             <?php $i = 0; ?>
                             @foreach ($opciones_producto as $opcion)
                                 <tr>
+                                    <input type="hidden" name="idOpcionUpdate[{{$i}}]" value="{{$opcion->id}}">
                                     <td><input class="form-control form-control-sm" type="text" name="nombreOpc[{{$i}}]" id="nombreOpc[{{$i}}]" placeholder="Ingres nombre opcion..." value="{{$opcion->nombre_opcion}}" required/></td>
                                     <td><input class="form-control form-control-sm" type="checkbox" name="stockOpc[{{$i}}]" id="stockOpc[{{$i}}]" @if ($opcion->stock_opcion) checked @endif></td>
-                                    <input type="hidden" name="idOpcionUpdate[{{$i}}]" value="{{$opcion->id}}">
+                                    <td><input class="form-control form-control-sm" type="checkbox" name="eliminarOpc[{{$i}}]" id="eliminarOpc[{{$i}}]"></td>
                                 </tr>
                             <?php $i++ ?>
                             @endforeach
