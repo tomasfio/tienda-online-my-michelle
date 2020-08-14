@@ -14,7 +14,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="codigo">Codigo</label>
-                            <input type="text" class="form-control" name="codigo" placeholder="Ingrese codigo del producto" required>
+                            <input type="text" class="form-control" name="codigo" placeholder="Ingrese codigo del producto" value="{{old('codigo')}}" required>
                             @error('codigo')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
@@ -31,14 +31,14 @@
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Descripcion</label>
-                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese descripcion del producto" required></textarea>
+                        <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingrese descripcion del producto" required>{{old('descripcion')}}</textarea>
                         @error('descripcion')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="observacion">Observaciones</label>
-                        <textarea class="form-control" name="observacion" rows="3" placeholder="Ingrese observacion del producto"></textarea>
+                        <textarea class="form-control" name="observacion" rows="3" placeholder="Ingrese observacion del producto">{{old('observacion')}}</textarea>
                         @error('observacion')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -47,14 +47,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="precioMinorista">Precio minorista</label>
-                            <input type="number" class="form-control" name="precioMinorista" placeholder="Ingrese precio minorista del producto..." step="0.01">
+                            <input type="number" class="form-control" name="precioMinorista" placeholder="Ingrese precio minorista del producto..." step="0.01" value="{{old('precioMinorista')}}">
                             @error('precioMinorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="precioMayorista">Precio mayorista</label>
-                            <input type="number" class="form-control" name="precioMayorista" placeholder="Ingrese precio mayorista del producto..." step="0.01">
+                            <input type="number" class="form-control" name="precioMayorista" placeholder="Ingrese precio mayorista del producto..." step="0.01" value="{{old('precioMayorista')}}">
                             @error('precioMayorista')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
@@ -64,14 +64,14 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="cantidadBlister">Cantidad del blister</label>
-                            <input type="number" class="form-control" name="cantidadBlister" placeholder="Ingrese cantidad de productos del blister..." min="1">
+                            <input type="number" class="form-control" name="cantidadBlister" placeholder="Ingrese cantidad de productos del blister..." min="1" value="{{old('cantidadBlister')}}">
                             @error('cantidadBlister')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="precioBlister">Precio blister</label>
-                            <input type="number" class="form-control" name="precioBlister" placeholder="Ingrese precio blister del producto..." step="0.01">
+                            <input type="number" class="form-control" name="precioBlister" placeholder="Ingrese precio blister del producto..." step="0.01" value="{{old('precioBlister')}}">
                             @error('precioBlister')
                                 <div class="alert alert-danger">{{$message}}</div>
                             @enderror
@@ -81,7 +81,7 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-3 form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="solo_minorista">
+                            <input type="checkbox" class="form-check-input" name="solo_minorista" @if(old('solo_minorista')) checked @endif>
                             <label class="form-check-label" for="solo_minorista">¿Solo minorista?</label>
                         </div>
                         <div class="col-3 form-group form-check">

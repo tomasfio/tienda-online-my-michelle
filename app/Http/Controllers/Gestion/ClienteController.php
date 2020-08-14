@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Gestion;
 use App\Categoria;
 use App\Cliente;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Gestion\Cliente\AddClienteRequest;
+use App\Http\Requests\Gestion\Cliente\UpdateClienteRequest;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -51,7 +53,7 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddClienteRequest $request)
     {
         $cliente = new Cliente();
         $cliente->email = $request->get('email');
@@ -100,7 +102,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateClienteRequest $request, $id)
     {
         $cliente = Cliente::findOrFail($id);
         $cliente->nombre = $request->get('nombre');

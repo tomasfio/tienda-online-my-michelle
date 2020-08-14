@@ -8,7 +8,7 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre de la subcategoria">
+                <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre de la subcategoria" value="{{old('nombre')}}" required>
                 @error('nombre')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
