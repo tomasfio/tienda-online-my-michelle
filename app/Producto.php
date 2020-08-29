@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 
@@ -17,7 +18,8 @@ class Producto extends Model
 
     public function imagenes()
     {
-        return $this->hasMany(ImagenesProducto::class, 'cod_producto', 'codigo');
+        return $this->hasMany(ImagenesProducto::class, 'cod_producto', 'codigo')
+            ->orderBy('principal', 'desc');
     }
 
     public function opciones()
@@ -30,6 +32,11 @@ class Producto extends Model
         return $this->hasOne(ImagenesProducto::class, 'cod_producto', 'codigo')
             ->where('principal', '=', '1')
             ->oldest();
+    }
+
+    public function nuevo()
+    {
+        return date_diff($this->created_at, new DateTime('now'))->d <= 14;
     }
 
     public function DeleteImagenes(){

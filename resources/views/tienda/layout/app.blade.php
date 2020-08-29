@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Michelle Accesorios</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -45,13 +46,22 @@
     <!-- Header Start -->
     <div class="header-area">
         <div class="main-header ">
+            <div class="top-bg d-none d-lg-block">
+                <div class="container-fluid">
+                    <div class="col-xl-12">
+                        <div class="row d-flex justify-content-center align-items-center">
+                            <h5 style="color: white;font-family: 'Yellowtail', cursive; " class="mt-2">My Michelle Accesorios</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="header-bottom  header-sticky">
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <!-- Logo -->
                         <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
-                            <div class="logo">
-                                <a href="{{url('/')}}"><img src="{{ asset('dist/img/logo/logo.jpg')}}" style="width: 100px;height:100px;" alt=""></a>
+                            <div class="logo-navbar">
+                                <a href="{{url('/')}}"><img src="{{ asset('dist/img/logo/logo.jpg')}}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
@@ -60,15 +70,15 @@
                                 <nav>                                                
                                     <ul id="navigation">                                                                                                                                     
                                         <li><a href="{{url('/')}}">Inicio</a></li>
-                                        <li><a href="">Productos</a></li>
-                                        <li><a href="#">Categorias</a>
+                                        <li><a href="{{url('/productos')}}">Productos</a></li>
+                                        <li><a href="#">Catalogo</a>
                                             <ul class="submenu">
                                                 @foreach ($categorias as $categoria)
-                                                <li><a href=""> {{$categoria->nombre}}</a></li>
+                                                <li><a href="{{url("/categoria/$categoria->nombre")}}"> {{$categoria->nombre}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contactenos</a></li>
+                                        <li><a href="{{url('/contact')}}">Contacto</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -76,14 +86,16 @@
                         <div class="col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card">
                             <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
                                 <li class="d-none d-xl-block">
-                                    <div class="form-box f-right ">
-                                        <input type="text" name="Search" placeholder="Buscar producto">
-                                        <div class="search-icon">
-                                            <i class="fas fa-search special-tag"></i>
+                                    <form class="form-inline" action="{{url('/productos')}}">
+                                        <div class="form-box f-right ">
+                                            <input type="text" name="search" placeholder="Buscar producto">
+                                            <div class="search-icon">
+                                                <i class="fas fa-search special-tag"></i>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </li>
-                                <!--<li>
+                                <!--\<li>
                                     <div class="shopping-card">
                                         <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
@@ -104,22 +116,22 @@
 </header>
 
 <main>
-    <section class="section-padding30">
+    <section class="mb-10">
         @yield('content')
     </section>
 </main>
 
 <footer>
-    <div class="footer-area footer-padding">
+    <div class="footer-area footer-padding" style="background: #f8f8f8; color: #777777;">
         <div class="container">
             <div class="row d-flex justify-content-between">
                 <div class="col-xl-4 col-lg-4 col-md-5 col-sm-6">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption">
                         <div class="footer-tittle">
                             <h4>Enlaces rapidos</h4>
                             <ul>
-                                <li><a href="#"> Productos</a></li>
-                                <li><a href="#"> Contactenos</a></li>
+                                <li><a href="{{url('/productos')}}"> Productos</a></li>
+                                <li><a href="{{url('/contact')}}"> Contacto</a></li>
                                 <li><a href="#"> Iniciar sesion</a></li>
                                 <li><a href="#"> Registrarse</a></li>
                             </ul>
@@ -127,19 +139,19 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-5 col-sm-8">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption">
                         <div class="footer-tittle">
                             <h4>Categorias</h4>
                             <ul>
                                 @foreach ($categorias as $categoria)
-                                <li><a href="#">{{$categoria->nombre}}</a></li>
+                                <li><a href="{{url("/categoria/$categoria->nombre")}}">{{$categoria->nombre}}</a></li>
                                 @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption">
                         <div class="footer-tittle">
                             <h4>Datos de contactos</h4>
                             <ul>
@@ -153,26 +165,27 @@
                     </div>
                 </div>
             </div>
-            <!-- Footer bottom -->
-            <div class="row">
-             <div class="col-xl-7 col-lg-7 col-md-7">
-                 <div class="footer-copy-right">
-                     <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
-             </div>
-              <div class="col-xl-5 col-lg-5 col-md-5">
-                 <div class="footer-copy-right f-right">
-                     <!-- social -->
-                     <div class="footer-social">
-                         <a href="#"><i class="fab fa-twitter"></i></a>
-                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                         <a href="#"><i class="fab fa-instagram"></i></a>
-                         <a href="#"><i class="fab fa-whatsapp"></i></a>
-                     </div>
-                 </div>
-             </div>
-         </div>
+        </div>
+         <!-- Footer bottom -->
+         <div class="container">
+            <div class="row ml-10 mr-10">
+                <div class="col-xl-7 col-lg-7 col-md-7">
+                    <div class="footer-copy-right">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-5">
+                    <div class="footer-copy-right f-right">
+                        <!-- social -->
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </footer>

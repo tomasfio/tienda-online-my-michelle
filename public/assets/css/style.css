@@ -3920,7 +3920,7 @@ input:focus {
 
 /* line 24, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-height2 {
-  min-height: 300px;
+  min-height: 450px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -3929,13 +3929,14 @@ input:focus {
 @media (max-width: 767px) {
   /* line 24, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
   .slider-height2 {
-    min-height: 260px;
+    min-height: 400px;
   }
 }
 
 /* line 34, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-area {
   margin-top: -1px;
+  background: #ffd8d9;
 }
 
 /* line 36, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
@@ -4000,7 +4001,7 @@ input:focus {
 /* line 68, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_h1-hero.scss */
 .slider-area .hero__caption span {
   font-family: "Yellowtail", cursive;
-  color: #2577fd;
+  color: #ffd8d9;
   font-size: 40px;
   display: inline-block;
 }
@@ -4207,37 +4208,22 @@ input:focus {
 /* line 14, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
 .category-area .single-category .category-img img {
   width: 100%;
-  border-radius: 6px;
+  height: auto;
 }
 
 /* line 19, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
 .category-area .single-category .category-img .category-caption {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 52px;
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1600px) {
-  /* line 19, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
-  .category-area .single-category .category-img .category-caption {
-    right: 13px;
-  }
-}
-
-@media (max-width: 767px) {
-  /* line 19, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
-  .category-area .single-category .category-img .category-caption {
-    right: 13px;
-  }
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* line 30, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
 .category-area .single-category .category-img .category-caption h2 {
-  color: #1f1f1f;
+  color: #000;
   text-transform: capitalize;
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 26px;
   line-height: 1.1;
   text-transform: capitalize;
   margin-bottom: 13px;
@@ -4246,14 +4232,14 @@ input:focus {
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
   /* line 30, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
   .category-area .single-category .category-img .category-caption h2 {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 
 @media (max-width: 767px) {
   /* line 30, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
   .category-area .single-category .category-img .category-caption h2 {
-    font-size: 22px;
+    font-size: 18px;
     margin-bottom: 0px;
   }
 }
@@ -4322,23 +4308,57 @@ input:focus {
 
 /* line 96, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
 .section-tittle h2 {
+  font-family: "Yellowtail", cursive;
   color: #000;
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 32px;
   line-height: 1;
+}
+
+.section-tittle h4 {
+  font-family: "Yellowtail", cursive;
+  color: #000;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.section-tittle h4 a {
+  font-family: "Yellowtail", cursive;
+  color: #000;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.section-tittle h4 a:hover {
+  color: #ff003c;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* line 96, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
   .section-tittle h2 {
-    font-size: 37px;
+    font-size: 24px;
+  }
+
+  .section-tittle h4 {
+    font-size: 15px;
+  }
+
+  .section-tittle h4 a {
+    font-size: 15px;
   }
 }
 
 @media (max-width: 767px) {
   /* line 96, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_category.scss */
   .section-tittle h2 {
-    font-size: 33px;
+    font-size: 22px;
+  }
+
+  .section-tittle h4 {
+    font-size: 12px;
+  }
+
+  .section-tittle h4 a {
+    font-size: 12px;
   }
 }
 
@@ -4408,6 +4428,15 @@ input:focus {
 
 /* line 47, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_latest_products.scss */
 .latest-product-area .single-product h4 a:hover {
+  color: #ff003c;
+}
+
+.latest-product-area .single-product h6 {
+  font-size: 14px;
+  color: #383838;
+}
+
+.latest-product-area .single-product h6 a:hover {
   color: #ff003c;
 }
 
@@ -13023,6 +13052,19 @@ input:focus {
   /* line 10, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_breadcrumb.scss */
   .breadcrumb_part .breadcrumb_iner h2 {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 640px){
+  .logo-navbar img{
+    width: 25%;
+    height: auto;
+  }
+}
+@media (min-width: 641px){
+  .logo-navbar img{
+    width: 100%;
+    height: auto;
   }
 }
 
